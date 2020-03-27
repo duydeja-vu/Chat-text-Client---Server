@@ -2,6 +2,11 @@ from socket import *
 import socket
 import sys
 
+SERVER_HOST = 'localhost'
+SERVER_PORT = 15322
+ADDR = (SERVER_HOST, SERVER_PORT)
+BUFF_SIZE = 1024
+
 if __name__ == "__main__":
     try:
         client_socket = socket.socket(AF_INET, SOCK_STREAM, 0)
@@ -9,12 +14,7 @@ if __name__ == "__main__":
         print("Failed to create socket because", err)
         sys.exit()
 
-    SERVER_HOST = 'localhost'
-    SERVER_PORT = 15322
-    ADDR = (SERVER_HOST, SERVER_PORT)
     client_socket.connect(ADDR)
-    BUFF_SIZE = 1024
-    
     while True:
         mess = input("Client: ")
         client_socket.send(mess.encode('utf-8'))
